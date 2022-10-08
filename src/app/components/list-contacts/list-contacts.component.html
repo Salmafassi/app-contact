@@ -1,0 +1,34 @@
+<add-contacts></add-contacts>
+<ul class="collection with-header" *ngIf="modules.length > 0; else noContents">
+<li class="collection-item collection-header">
+    <h5>list of contacts</h5>
+</li>
+<li class="collection-item" *ngFor="let module of modules">
+    <div class="row">
+        <div class="s12 col">
+             <strong>{{module.name}}</strong> {{module.prof}} 
+             <button class="btn waves-effect secondary-content" (click)="editer(module)">
+                <i class="fa fa-pencil"></i>
+             </button>
+             
+        </div>
+        <div class="s12 col" *ngIf="statusModule && module.id==myModule.id">
+           <div class="row">
+            <div class="s12 col m-6 input-field">
+                <input type="text" placeholder="Name" name="name" [(ngModel)]="module.name">
+            </div>
+            <div class="s12 col m-6 input-field">
+                <input type="text" placeholder="prpf" name="prof" [(ngModel)]="module.prof">
+            </div>
+            <button class="btn orange" type="submit" (click)="update(module)">Modifier</button>&nbsp;&nbsp;
+            <button class="btn black"  (click)="delete(module)">Delete</button>
+           </div>
+        </div>
+    </div>
+  
+</li>
+</ul>
+
+<ng-template #noContents>
+    <h5>la liste des modules est vide!</h5>
+</ng-template>
